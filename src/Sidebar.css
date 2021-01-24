@@ -1,0 +1,24 @@
+.sidebar {
+  margin-top: 10px;
+}
+
+.sidebar_compose {
+  margin-left: 8px !important;
+  margin-bottom: 16px !important;
+  padding: 6px 24px 6px 12px !important;
+  text-transform: capitalize !important;
+  border-radius: 2.5em !important;
+  box-shadow: 1px 1px 2px 1px lightgray;
+}
+.sidebar_compose .MuiSvgIcon-root {
+  font-size: 40px !important;
+  color: tomato;
+}
+
+.sidebar_footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px;
+  margin-top: 16px;
+}

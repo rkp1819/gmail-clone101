@@ -1,0 +1,22 @@
+.section {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-width: 200px;
+  width: 100%;
+  color: gray;
+  height: 50px !important;
+  border-width: 0px !important;
+}
+
+.section > .MuiSvgIcon-root {
+  padding: 0px 10px;
+}
+.section--active {
+  background-color: whitesmoke;
+  border-width: 3px !important;
+}
+.section:hover {
+  background-color: whitesmoke;
+  border-width: 3px !important;
+}
