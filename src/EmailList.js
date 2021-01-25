@@ -30,7 +30,6 @@ function EmailList() {
           })
         );
       });
-    console.log(emails);
   }, []);
 
   // useEffect(() => {}, [emails]);

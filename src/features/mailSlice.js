@@ -11,16 +11,13 @@ export const mailSlice = createSlice({
   reducers: {
     OpenSendMessage: (state) => {
       state.sendMessageIsOpen = true;
-      console.log(state.sendMessageIsOpen);
     },
 
     CloseSendMessage: (state) => {
       state.sendMessageIsOpen = false;
-      console.log(state.sendMessageIsOpen);
     },
 
     SetMailData: (state, action) => {
-      console.log(action.payload, state);
       return { mailData: action.payload };
     },
   },
