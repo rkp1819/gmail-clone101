@@ -11,11 +11,30 @@ import {
   People,
   LocalOffer,
 } from "@material-ui/icons";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./EmailList.css";
 import Section from "./Section";
 import EmailRow from "./EmailRow";
+import { db } from "./firebase";
+
 function EmailList() {
+  const [emails, setEmails] = useState([]);
+
+  useEffect(() => {
+    db.collection("emails")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setEmails(
+          snapshot.docs.map((doc) => {
+            return { id: doc.id, data: doc.data() };
+          })
+        );
+      });
+    console.log(emails);
+  }, []);
+
+  // useEffect(() => {}, [emails]);
+
   return (
     <div className="emailList">
       <div className="emailList__settings">
@@ -62,18 +81,20 @@ function EmailList() {
           selected={false}
         />
       </div>
-      {new Array(50).fill(0).map((item, index) => {
+      {emails.map(({ id, data: { to, subject, message, timestamp } }) => {
         return (
           <EmailRow
-            key={index}
-            title={"Shiva Kumar Panda"}
-            subject={"Meeting Tonight"}
-            description={"Agenda inside the Agenda is to Party"}
-            date_time={`${
-              new Date().toLocaleDateString() +
-              ", " +
-              new Date().toLocaleTimeString()
-            }`}
+            key={id}
+            id={id}
+            title={to}
+            subject={subject}
+            description={message}
+            // date_time={`${
+            //   new Date().toLocaleDateString() +
+            //   ", " +
+            //   new Date().toLocaleTimeString()
+            // }`}
+            date_time={new Date(timestamp?.seconds * 1000).toUTCString() + " "}
           />
         );
       })}
