@@ -37,9 +37,11 @@ function Login() {
           onClick={() => {
             signIn();
           }}
+          fullWidth
         >
           Login
         </Button>
+        <h1>Gmail WEB VERSION clone</h1>
       </div>
     </div>
   );
