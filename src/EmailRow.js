@@ -3,7 +3,11 @@ import { LabelImportantOutlined, Star } from "@material-ui/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import "./EmailRow.css";
+import { useDispatch } from "react-redux";
+import { SetMailData } from "./features/mailSlice";
+
 function EmailRow({ title, subject, description, date_time }) {
+  const dispatch = useDispatch();
   let history = useHistory();
   return (
     <div className="emailRow">
@@ -19,6 +23,14 @@ function EmailRow({ title, subject, description, date_time }) {
         </div>
         <h3
           onClick={() => {
+            dispatch(
+              SetMailData({
+                title: title,
+                subject: subject,
+                description: description,
+                date_time: date_time,
+              })
+            );
             history.push("/mail");
           }}
           className="emailRow__part1__title"
@@ -27,6 +39,14 @@ function EmailRow({ title, subject, description, date_time }) {
         </h3>
         <h4
           onClick={() => {
+            dispatch(
+              SetMailData({
+                to: title,
+                subject: subject,
+                description: description,
+                date_time: date_time,
+              })
+            );
             history.push("/mail");
           }}
           className="emailRow__part1__message"
@@ -37,6 +57,14 @@ function EmailRow({ title, subject, description, date_time }) {
       </div>
       <div
         onClick={() => {
+          dispatch(
+            SetMailData({
+              to: title,
+              subject: subject,
+              description: description,
+              date_time: date_time,
+            })
+          );
           history.push("/mail");
         }}
         className="emailRow__part2"

@@ -18,8 +18,16 @@ import {
 import React from "react";
 import { useHistory } from "react-router-dom";
 import "./Mail.css";
+
+import { useSelector } from "react-redux";
+import { selectMailData } from "./features/mailSlice";
+
 function Mail() {
   let history = useHistory();
+  let { title, subject, description, date_time } = useSelector(selectMailData);
+  if (!date_time) {
+    history.push("/");
+  }
   return (
     <div className="mail">
       <div className="mail__tools">
@@ -82,12 +90,12 @@ function Mail() {
       </div>
       <div className="mail__body">
         <div className="mail__body__header">
-          <h2>Subject</h2>
+          <h2>{subject}</h2>
           <LabelImportant />
-          <p>Title</p>
-          <p>{new Date().toLocaleTimeString()}</p>
+          <p>{title}</p>
+          <p>{date_time}</p>
         </div>
-        This is the mail body
+        {description}
       </div>
     </div>
   );
